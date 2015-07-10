@@ -1,0 +1,50 @@
+{
+  "name": "CSS-Demo",
+  "dependencies": {    
+    "jquery": "*",
+    "node-lessify": "0.0.6",
+    "path": "^0.4.9",
+    "react": "0.12.2",
+    "reflux": "0.2.7",
+    "react-router": "0.11.6"
+  },
+  "browserify": {
+    "transform": [
+      "cssify",
+      "reactify"
+    ]
+  },
+  "browserify-shim": {},
+  "devDependencies": {
+    "vinyl": "*",
+    "browserify": "*",
+    "cssify": "*",
+    "gulp": "*",
+    "reactify": "*",
+    "watchify": "*",
+    "gulp-add-src": "^0.2.0",
+    "gulp-less":"*",
+    "gulp-buffer": "0.0.2",
+    "gulp-clean": "^0.3.1",
+    "gulp-cog": "^0.1.2",
+    "gulp-concat": "^2.4.2",
+    "gulp-json-editor": "^2.2.1",
+    "gulp-load-plugins": "^0.7.1",
+    "gulp-replace": "*",
+    "gulp-rimraf": "^0.1.1",
+    "gulp-run": "^1.6.4",
+    "gulp-shell": "^0.2.10",
+    "gulp-uglify": "^1.0.1",
+    "gulp-if":"*",
+    "gulp-zip": "^2.0.2",
+    "gulp-json-editor":"*",
+    "rimraf": "^2.2.8",
+    "semver": "^4.1.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.0.0"
+  },
+  "scripts": {
+    "watch": "watchify js/index.js -o /opt/lampp/htdocs/Demo-css/build/client/bundle.js",
+    "xamp" : "sudo /opt/lampp/lampp start"
+  }
+}

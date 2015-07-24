@@ -3,13 +3,8 @@ var fs          = require('fs');
 var browserify  = require('browserify');
 var source      = require('vinyl-source-stream');
 var buffer      = require('vinyl-buffer');
-var semver      = require('semver');
-var rimraf      = require('rimraf');
-var path        = require('path');
-var less        = require('gulp-less');
 
-var gulpLoadPlugins = require('gulp-load-plugins'),
-    plugins = gulpLoadPlugins();
+var plugins = require('gulp-load-plugins')();
 
 gulp.task('browserify',function(cb) {
   return browserify({
@@ -22,23 +17,24 @@ gulp.task('browserify',function(cb) {
   .pipe(gulp.dest('../../../../../opt/lampp/htdocs/Demo-css/build/client'))
 });
 
-gulp.task('copy-images',['browserify'],function(){
+gulp.task('copy-images',function(){
   return gulp.src('./img/**')
    .pipe(gulp.dest('../../../../../opt/lampp/htdocs/Demo-css/build/client/img'))
 });
 
-gulp.task('copy-fonts',['browserify'],function(){
+gulp.task('copy-fonts',function(){
   return gulp.src('./fonts/**')
    .pipe(gulp.dest('../../../../../opt/lampp/htdocs/Demo-css/build/client/fonts'))
 });
 
 gulp.task('less',function () {
-  return gulp.src('./less/**/*.less')
-    .pipe(less({
-      paths: [ path.join(__dirname, 'less', 'includes') ]
-    }))
+  return gulp.src('./less/main.less')
+    .pipe(plugins.less())
     .pipe(gulp.dest('./css'));
 });
-gulp.task('build',['browserify','copy-images','copy-fonts','less'],function(){
-  
+gulp.task('build',['browserify','less','copy-images','copy-fonts'],function(){
+  gulp.watch('./js/index.js',['browserify']);
+  gulp.watch('./img/**',['copy-images']);
+  gulp.watch('./fonts/**',['copy-fonts']);
+  gulp.watch('./less/main.less',['less','browserify'])
 })

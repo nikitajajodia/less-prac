@@ -14,7 +14,7 @@ var DefaultRoute    = Router.DefaultRoute;
 var NotFoundRoute   = Router.NotFoundRoute;
 
 var App             = require('./app');
-var Home            = require('./home');
+var Home            = require('./home').View;
 
 var routes = 
   (

@@ -1,8 +1,7 @@
 var gulp        = require('gulp');
 var browserify  = require('browserify');
-var source      = require('vinyl-source-stream');
 var buffer      = require('vinyl-buffer');
-
+var source      = require('vinyl-source-stream');
 var plugins     = require('gulp-load-plugins')();
 
 gulp.task('browserify',function(cb) {
@@ -37,5 +36,5 @@ gulp.task('build',['browserify','less','copy-images','copy-fonts'],function(){
   gulp.watch('./js/**',['browserify']);
   gulp.watch('./img/**',['copy-images','browserify']);
   gulp.watch('./fonts/**',['copy-fonts','browserify']);
-  gulp.watch('./less/main.less',['less','browserify'])
+  gulp.watch('./less/**',['less','browserify'])
 })
